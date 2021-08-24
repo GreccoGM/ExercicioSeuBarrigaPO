@@ -1,17 +1,23 @@
 package testes;
 
-import dados.Login;
+import org.junit.Before;
+import util.BaseTestes;
+import util.Login;
 import org.junit.Assert;
 import org.junit.Test;
-import paginas.PaginaHome;
 
 public class TesteLogin extends Login {
 
+    @Before
+    public void setup(){
+        BaseTestes base = new BaseTestes();
+        base.setInteracaoHome();
+    }
     @Test
     public void loginComSucesso(){
 
-        PaginaHome pagHome = realizarLogin();
-        String elementoHome = pagHome.getAlert();
+        realizarLogin();
+        String elementoHome = interacaoHome.getAlert();
 
         Assert.assertEquals("Home",elementoHome);
     }

@@ -1,67 +1,69 @@
 package testes;
 
-import dados.Login;
-import base.BaseTestes;
+import util.Login;
+import util.BaseTestes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import paginas.PagAdicionarConta;
-import paginas.PagEditarConta;
-import paginas.PagListarContas;
 
 public class TesteConta extends BaseTestes {
 
     @Before
-        public void login () {
+        public void setup () {
             Login loginS = new Login();
-            pagHome = loginS.realizarLogin();
-    }
+            loginS.realizarLogin();
+
+            setInteracaoHome();
+            setInteracaoAdicionarConta();
+            setInteracaoEditarConta();
+            setIntListarContas();
+            setDadosCadastrados();
+   }
 
     @Test
         public void cadastrarContaSemNome () {
-            PagAdicionarConta pagAdicionarConta = pagHome.clicarMenuLinkCriarConta();
+            interacaoHome.clicarMenuLinkCriarConta();
 
-            pagAdicionarConta.salvarConta("");
-            String msgRetorno = pagAdicionarConta.getMsgErro();
+            intAdicConta.salvarConta("");
+            String msgRetorno = intAdicConta.getMsgErro();
 
             Assert.assertEquals("Informe o nome da conta", msgRetorno);
     }
 
     @Test
         public void cadastrarContaComSucesso () {
-            PagAdicionarConta pagAdicionarConta = pagHome.clicarMenuLinkCriarConta();
+            interacaoHome.clicarMenuLinkCriarConta();
 
-            pagAdicionarConta.salvarConta("Conta 2108");
-            String msgRetorno = pagAdicionarConta.getMsgSucesso();
+            intAdicConta.salvarConta("Conta 2108");
+            String msgRetorno = intAdicConta.getMsgSucesso();
 
             Assert.assertEquals("Conta adicionada com sucesso!", msgRetorno);
     }
 
     @Test
         public void listarContasCadastradas () {
-            pagHome.clicarMenuLinkListar();
+            interacaoHome.clicarMenuLinkListar();
 
             Assert.assertFalse(dadosCadastrados.listaComValor("tabelaContas"));
     }
 
     @Test
         public void sucessoAlteracaoConta(){
-        PagListarContas pagListarContas = pagHome.clicarMenuLinkListar();
+            interacaoHome.clicarMenuLinkListar();
 
-        PagEditarConta pagEditar = pagListarContas.clicarBtnEditar();
-        pagEditar.editarConta(" - Alteração");
-        String msgSucessoEdicao = pagEditar.getMsgSucessoEdicao();
+            intListarContas.clicarBtnEditar();
+            intEditarConta.editarConta(" - Alteração");
+            String msgSucessoEdicao = intEditarConta.getMsgSucesso();
 
-        Assert.assertEquals("Conta alterada com sucesso!", msgSucessoEdicao);
+            Assert.assertEquals("Conta alterada com sucesso!", msgSucessoEdicao);
     }
 
     @Test
     public void sucessoExclusaoConta(){
-        PagListarContas pagListarContas = pagHome.clicarMenuLinkListar();
+        interacaoHome.clicarMenuLinkListar();
+        intListarContas.clicarBtnExcluir();
 
-        PagEditarConta pagEditar = pagListarContas.clicarBtnExcluir();
-
-        String msgSucessoExclusao = pagEditar.getMsgSucessoEdicao();
+        String msgSucessoExclusao = intEditarConta.getMsgSucesso();
 
         Assert.assertEquals("Conta removida com sucesso!", msgSucessoExclusao);
     }

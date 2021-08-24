@@ -1,22 +1,22 @@
 package testes;
 
-import dados.Login;
-import base.BaseTestes;
+import util.Login;
+import util.BaseTestes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import paginas.PaginaResumoMensal;
-
 public class TesteResumoMensal extends BaseTestes {
 
-    private static PaginaResumoMensal pagResumoMensal;
 
     @Before
-    public void login () {
+    public void setup () {
         Login loginS = new Login();
-        pagHome = loginS.realizarLogin();
-        pagResumoMensal = pagHome.clicarMenuLinkResumoMensal();
+        loginS.realizarLogin();
+
+        setIntResumoMensal();
+        setInteracaoHome();
+        interacaoHome.clicarMenuLinkResumoMensal();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class TesteResumoMensal extends BaseTestes {
 
     @Test
     public void verificarResumoCadastrado() {
-        String movimentacao= pagResumoMensal.pegarContaCadastrada();
+        String movimentacao = intResumoMensal.pegarContaCadastrada();
 
         Assert.assertEquals("Teste",movimentacao);
     }
