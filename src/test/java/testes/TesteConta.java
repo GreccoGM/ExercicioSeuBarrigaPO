@@ -13,7 +13,7 @@ public class TesteConta extends BaseTestes {
             Login loginS = new Login();
             loginS.realizarLogin();
 
-            setInteracaoHome();
+            setPaginaInicial();
             setInteracaoAdicionarConta();
             setInteracaoEditarConta();
             setIntListarContas();
@@ -22,7 +22,7 @@ public class TesteConta extends BaseTestes {
 
     @Test
         public void cadastrarContaSemNome () {
-            interacaoHome.clicarMenuLinkCriarConta();
+            pagInicial.clicarMenuLinkCriarConta();
 
             intAdicConta.salvarConta("");
             String msgRetorno = intAdicConta.getMsgErro();
@@ -32,7 +32,7 @@ public class TesteConta extends BaseTestes {
 
     @Test
         public void cadastrarContaComSucesso () {
-            interacaoHome.clicarMenuLinkCriarConta();
+            pagInicial.clicarMenuLinkCriarConta();
 
             intAdicConta.salvarConta("Conta 2108");
             String msgRetorno = intAdicConta.getMsgSucesso();
@@ -42,14 +42,14 @@ public class TesteConta extends BaseTestes {
 
     @Test
         public void listarContasCadastradas () {
-            interacaoHome.clicarMenuLinkListar();
+            pagInicial.clicarMenuLinkListar();
 
             Assert.assertFalse(dadosCadastrados.listaComValor("tabelaContas"));
     }
 
     @Test
         public void sucessoAlteracaoConta(){
-            interacaoHome.clicarMenuLinkListar();
+            pagInicial.clicarMenuLinkListar();
 
             intListarContas.clicarBtnEditar();
             intEditarConta.editarConta(" - Alteração");
@@ -59,13 +59,13 @@ public class TesteConta extends BaseTestes {
     }
 
     @Test
-    public void sucessoExclusaoConta(){
-        interacaoHome.clicarMenuLinkListar();
-        intListarContas.clicarBtnExcluir();
+        public void sucessoExclusaoConta(){
+            pagInicial.clicarMenuLinkListar();
+            intListarContas.clicarBtnExcluir();
 
-        String msgSucessoExclusao = intEditarConta.getMsgSucesso();
+            String msgSucessoExclusao = intEditarConta.getMsgSucesso();
 
-        Assert.assertEquals("Conta removida com sucesso!", msgSucessoExclusao);
+            Assert.assertEquals("Conta removida com sucesso!", msgSucessoExclusao);
     }
 
 }

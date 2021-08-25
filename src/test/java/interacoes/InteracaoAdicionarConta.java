@@ -13,8 +13,8 @@ public class InteracaoAdicionarConta extends PagAdicionarConta {
     }
 
     public void salvarConta(String conta){
-        driver.findElement(nomeConta).sendKeys(conta);
-        driver.findElement(salvar).click();
+        nomeConta().sendKeys(conta);
+        btnSalvar().click();
     }
 
     public String getMsgErro(){

@@ -1,7 +1,6 @@
 package interacoes;
 
 import org.openqa.selenium.WebDriver;
-import paginas.PagEditarConta;
 import paginas.PagListarContas;
 
 public class InteracaoListarContas extends PagListarContas {
@@ -10,14 +9,12 @@ public class InteracaoListarContas extends PagListarContas {
         super(driver);
     }
 
-    public PagEditarConta clicarBtnExcluir(){
-        driver.findElement(btnExcluir).click();
-        return new PagEditarConta(driver);
+    public void clicarBtnExcluir(){
+        btnEditar().click();
     }
 
-    public PagEditarConta clicarBtnEditar(){
-        driver.findElement(btnEditar).click();
-        return new PagEditarConta(driver);
+    public void clicarBtnEditar(){
+        btnExcluir().click();
     }
 
 

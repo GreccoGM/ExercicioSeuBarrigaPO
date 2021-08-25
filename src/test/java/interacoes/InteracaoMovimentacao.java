@@ -33,10 +33,10 @@ public class InteracaoMovimentacao extends PaginaMovimentacao {
     }
 
     public void salvarMovimentacaoSucesso(){
-        setDescricao("Teste");
-        setDataPagamento("12/08/2021");
-        setDataTransacao("21/08/2021");
-        setInteressado("Antonio");
+        setDescricao("Teste Sucesso");
+        setDataPagamento("15/08/2021");
+        setDataTransacao("20/08/2021");
+        setInteressado("Maria");
         setValor("25600");
         setConta("Conta 2109");
         setTipo("Despesa");
@@ -44,13 +44,44 @@ public class InteracaoMovimentacao extends PaginaMovimentacao {
         salvarMovimentacao();
     }
 
-    public void salvarMovimentacao(){
-        driver.findElement(salvar).click();
+    private void setDescricao(String descricaoP){
+        descricao().sendKeys(descricaoP);
+    }
+    private void setDataPagamento(String dataPagamentoP){
+        dtPagamento().sendKeys(dataPagamentoP);
+    }
+    private void setDataTransacao(String dataTransacaoP){
+        dtTransacao().sendKeys(dataTransacaoP);
+    }
+    private void setInteressado(String interessadoP){
+        interessado().sendKeys(interessadoP);
+    }
+    private void setValor(String valorP){
+        valor().sendKeys(valorP);
     }
 
-    public String getMsg(By msg)    {
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        return driver.findElement(msg).getText();
+    private void setConta(String contaP){
+        WebElement element = conta();
+        Select combo = new Select(element);
+        combo.selectByVisibleText(contaP);
+    }
+
+    private void setTipo(String tipoP){
+        WebElement element = tipo();
+        Select combo = new Select(element);
+        combo.selectByVisibleText(tipoP);
+    }
+
+    private void setSituacaoPago(){
+        situacaoPago().click();
+    }
+
+    private void setSituacaoPendente(){
+        situacaoPendente().click();
+    }
+
+    public void salvarMovimentacao(){
+        btnSalvar().click();
     }
 
     public String getMsgErro(){
@@ -61,39 +92,9 @@ public class InteracaoMovimentacao extends PaginaMovimentacao {
         return getMsg(msgSucesso);
     }
 
-    private void setDescricao(String descricaoP){
-        driver.findElement(descricao).sendKeys(descricaoP);
-    }
-    private void setDataPagamento(String dataPagamentoP){
-        driver.findElement(dataPagamento).sendKeys(dataPagamentoP);
-    }
-    private void setDataTransacao(String dataTransacaoP){
-        driver.findElement(dataTransacao).sendKeys(dataTransacaoP);
-    }
-    private void setInteressado(String interessadoP){
-        driver.findElement(interessado).sendKeys(interessadoP);
-    }
-    private void setValor(String valorP){
-        driver.findElement(valor).sendKeys(valorP);
-    }
-    private void setConta(String contaP){
-        WebElement element = driver.findElement(conta);
-        Select combo = new Select(element);
-        combo.selectByVisibleText(contaP);
-    }
-
-    private void setTipo(String tipoP){
-        WebElement element = driver.findElement(tipo);
-        Select combo = new Select(element);
-        combo.selectByVisibleText(tipoP);
-    }
-
-    private void setSituacaoPago(){
-        driver.findElement(situacaoPago).click();
-    }
-
-    private void setSituacaoPendente(){
-        driver.findElement(situacaoPendente).click();
+    public String getMsg(By msg)    {
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        return driver.findElement(msg).getText();
     }
 
     public ArrayList<String> pegarMsg (){

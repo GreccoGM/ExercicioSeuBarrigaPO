@@ -15,7 +15,11 @@ public class PaginaResumoMensal{
     protected By tabelaLinhas = By.cssSelector("#tabelaExtrato > tbody > tr");
     protected By elementoColuna = By.cssSelector("td:nth-child(1)"); //pega elemento da primeira linha encontrada (tabela linha) e da primeira coluna
 
-
-
+    protected WebElement tabelaLinhas(){
+        return driver.findElement(tabelaLinhas);
+    }
+    protected WebElement elementoColuna(WebElement listaP){
+        return listaP.findElement(elementoColuna);
+    }
 
 }

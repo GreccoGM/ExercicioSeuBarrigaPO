@@ -1,14 +1,14 @@
 package util;
 
 import interacoes.*;
+import org.junit.After;
 import org.junit.Before;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import paginas.PaginaHome;
-import paginas.PaginaLogin;
+import util.navegacao.PaginaInicial;
 
 public class BaseTestes {
 
@@ -16,7 +16,7 @@ public class BaseTestes {
     protected static DadosCadastrados dadosCadastrados;
 
     protected static InteracaoLogin intLogin;
-    protected static InteracaoHome interacaoHome;
+    protected static PaginaInicial pagInicial;
     protected static InteracaoAdicionarConta intAdicConta;
     protected static InteracaoEditarConta intEditarConta;
     protected static InteracaoMovimentacao intMovimentacao;
@@ -36,9 +36,8 @@ public class BaseTestes {
     public void setDadosCadastrados(){
         dadosCadastrados  = new DadosCadastrados(driver);
     }
-
-    public void setInteracaoHome(){
-        interacaoHome = new InteracaoHome(driver);
+    public void setPaginaInicial(){
+        pagInicial = new PaginaInicial(driver);
     }
     public void setInteracaoAdicionarConta(){
         intAdicConta = new InteracaoAdicionarConta(driver);
@@ -54,6 +53,11 @@ public class BaseTestes {
     }
     public void setIntListarContas(){
         intListarContas = new InteracaoListarContas(driver);
+    }
+
+    @After
+    public void finalizarDriver(){
+        driver.quit();
     }
 
 

@@ -15,9 +15,9 @@ public class TesteMovimentacao extends BaseTestes {
             Login loginS = new Login();
             loginS.realizarLogin();
 
-            setInteracaoHome();
+            setPaginaInicial();
             setIntMovimentacao();
-            interacaoHome.clicarMenuLinkMovimentacao();
+            pagInicial.clicarMenuLinkMovimentacao();
     }
 
     @Test
@@ -32,6 +32,7 @@ public class TesteMovimentacao extends BaseTestes {
 
         Assert.assertArrayEquals(msgs,mensagensRetornadas);
     }
+
 
     @Test
         public void verificarTipoCaracterCampoNumero() {

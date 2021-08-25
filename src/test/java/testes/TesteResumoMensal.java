@@ -15,8 +15,8 @@ public class TesteResumoMensal extends BaseTestes {
         loginS.realizarLogin();
 
         setIntResumoMensal();
-        setInteracaoHome();
-        interacaoHome.clicarMenuLinkResumoMensal();
+        setPaginaInicial();
+        pagInicial.clicarMenuLinkResumoMensal();
     }
 
     @Test

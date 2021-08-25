@@ -11,8 +11,8 @@ public class InteracaoResumoMensal extends PaginaResumoMensal {
     }
 
     public String pegarContaCadastrada (){
-        WebElement lista = driver.findElement(tabelaLinhas);
-        String elementoPosicao = lista.findElement(elementoColuna).getText();
+        WebElement lista = tabelaLinhas();
+        String elementoPosicao = elementoColuna(lista).getText();
 
         return elementoPosicao;
     }

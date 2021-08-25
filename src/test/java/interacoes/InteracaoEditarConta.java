@@ -13,16 +13,16 @@ public class InteracaoEditarConta extends PagEditarConta {
         super(driver);
     }
 
-    public PagListarContas editarConta(String conta){
-        driver.findElement(nomeConta).sendKeys(conta);
-        driver.findElement(salvar).click();
-
-        return new PagListarContas(driver);
+    public void editarConta(String conta){
+        nomeConta().sendKeys(conta);
+        btnSalvar().click();
     }
 
     public String getMsgSucesso(){
         return getMsg(msgSucesso);
     }
+
+
 
     public String getMsg(By msg)    {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);

@@ -1,41 +1,48 @@
-package interacoes;
+package util.navegacao;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import paginas.*;
+import util.BaseTestes;
 
 import java.util.concurrent.TimeUnit;
 
-public class InteracaoHome extends PaginaHome{
+public class PaginaInicial extends BaseTestes {
+    protected WebDriver driver;
 
-    public InteracaoHome(WebDriver driver) {
-        super(driver);
+    public PaginaInicial(WebDriver driver) {
+        this.driver = driver;
     }
+
+    protected By paginaInicialLinkHome = By.linkText("Home");
+    protected By menuContas = By.linkText("Contas");
+    protected By contasAdicionar = By.linkText("Adicionar");
+    protected By contasListar = By.linkText("Listar");
+    protected By criarMovimentacao = By.linkText("Criar Movimentação");
+    protected By resumoMensal = By.linkText("Resumo Mensal");
+
 
     public void clicarMenuLinkListar(){
         driver.findElement(menuContas).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.findElement(contasListar).click();
-        //return new PagListarContas(driver);
     }
 
     public void clicarMenuLinkCriarConta(){
         driver.findElement(menuContas).click();
         driver.findElement(contasAdicionar).click();
-        //return new PagAdicionarConta(driver);
     }
 
     public void clicarMenuLinkMovimentacao(){
         driver.findElement(criarMovimentacao).click();
-        //return new PaginaMovimentacao(driver);
     }
 
     public void clicarMenuLinkResumoMensal(){
         driver.findElement(resumoMensal).click();
-        //return new PaginaResumoMensal(driver);
     }
 
     public String getAlert(){
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         return driver.findElement(paginaInicialLinkHome).getText();
     }
+
 }

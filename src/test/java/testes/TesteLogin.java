@@ -11,13 +11,13 @@ public class TesteLogin extends Login {
     @Before
     public void setup(){
         BaseTestes base = new BaseTestes();
-        base.setInteracaoHome();
+        base.setPaginaInicial();
     }
+
     @Test
     public void loginComSucesso(){
-
         realizarLogin();
-        String elementoHome = interacaoHome.getAlert();
+        String elementoHome = pagInicial.getAlert();
 
         Assert.assertEquals("Home",elementoHome);
     }
